@@ -1,25 +1,6 @@
-from typing import List, Tuple
-
-Poly = List[int] #from the coefficient of lowest degree to coefficient of highest degree
-
-#remove leading zeros
-def leadingZerosArr (x:Poly) -> Poly:
-    i = len(x)-1
-    while i > 0 and x[i] == 0:
-        i-=1
-        if i < 0 :
-            return [0]
-    return x[:i+1]
-        
-# compute x mod p
-def modP (f:Poly, p:int) -> Poly:
-    return leadingZerosArr([c % p for c in f])
-
-# take the last element from the Poly list which returns to leading coefficent
-def leadingCoeff(f: Poly) -> int:
-    f = leadingZerosArr(f)
-    return 0 if not f else f[-1]
-
+from typing import Tuple
+from utils import Poly, leadingZerosArr, modP, leadingCoeff
+from additionSubtraction import addition, subtraction
 #multiply by the X^k
 def polyShift(f: Poly, k: int) -> Poly:
     if f == [0]:
