@@ -1,6 +1,8 @@
 from typing import Tuple
 from utils import Poly, leadingZerosArr, modP, leadingCoeff
 from additionSubtraction import addition, subtraction
+from multiplication import multiplication
+
 #multiply by the X^k
 def polyShift(f: Poly, k: int) -> Poly:
     if f == [0]:

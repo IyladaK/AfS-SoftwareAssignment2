@@ -1,5 +1,6 @@
 import json
 from utils import *
+from polynomialArithmetic.multiplication import multiplication
 
 def writeSolution(solPath : str, answersDict : dict[str, str]):
     with open(solPath, "w") as json_file:
@@ -17,7 +18,10 @@ def parseExercise(params : dict):
             case "subtraction":
                 pass
             case "multiplication":
-                pass
+                p = params["integer_modulus"]
+                f = params["f"]
+                g = params["g"]
+                answers = {"answer": multiplication(f, g, p)}
             case "long_division":
                 pass
             case "extended_euclidean_algorithm":
@@ -64,4 +68,4 @@ def solve_exercise(exercise_location : str, answer_location : str):
 
     writeSolution(answer_location, answers)
 
-solve_exercise("Simple/Exercises/exercise0.json", "scratch.json")
+solve_exercise("Simple/Exercises/exercise2.json", "scratch.json")
