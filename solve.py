@@ -1,4 +1,5 @@
 import json
+from polynomialArithmetic.additionSubtraction import addition, subtraction
 from utils import *
 from polynomialArithmetic.multiplication import multiplication
 from polynomialArithmetic.longDivision import longDivision
@@ -16,9 +17,15 @@ def parseExercise(params : dict):
     if type == "polynomial_arithmetic":
         match task:
             case "addition":
-                pass
+                p = params["integer_modulus"]
+                f = params["f"]
+                g = params["g"]
+                answers = {"answer": addition(f, g, p)}
             case "subtraction":
-                pass
+                p = params["integer_modulus"]
+                f = params["f"]
+                g = params["g"]
+                answers = {"answer": subtraction(f, g, p)}
             case "multiplication":
                 p = params["integer_modulus"]
                 f = params["f"]
