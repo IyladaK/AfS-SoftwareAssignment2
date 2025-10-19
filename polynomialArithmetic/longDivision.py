@@ -1,7 +1,7 @@
 from typing import Tuple
 from utils import Poly, leadingZerosArr, modP, leadingCoeff
-from additionSubtraction import addition, subtraction
-from multiplication import multiplication
+from .additionSubtraction import addition, subtraction
+from .multiplication import multiplication
 
 #multiply by the X^k
 def polyShift(f: Poly, k: int) -> Poly:
@@ -20,18 +20,22 @@ def longDivision(f: Poly, g: Poly, p: int) -> Tuple[Poly, Poly]:
     deg_g = len(g) - 1
 
     if deg_f < deg_g:
-        q = [] #quotient q  = 0
+        q = [0] #quotient q  = 0
         r = f[:] # remainder r = dividend f
         return q, r
     
     q = [0] *(deg_f - deg_g +1)
     r = f[:]
     lc_g = leadingCoeff(g)
-    inv_lc_g = pow(lc_g, p-2, p)
-    deg_r = len(r) - 1
+    inv_lc_g = pow(lc_g % p, p-2, p)
 
-    while deg_r >= deg_g and r != [0]:
+    while True:
         r = leadingZerosArr(modP(r, p))
+        deg_r = len(r) - 1 
+
+        if r == [0] or deg_r < deg_g:        
+            break 
+
         lc_r = leadingCoeff(r)
         k = deg_r - deg_g
 

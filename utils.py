@@ -4,6 +4,8 @@ Poly = List[int] #from the coefficient of lowest degree to coefficient of highes
 
 #remove leading zeros
 def leadingZerosArr (x:Poly) -> Poly:
+    if not x:
+        return [0]
     i = len(x)-1
     while i > 0 and x[i] == 0:
         i-=1

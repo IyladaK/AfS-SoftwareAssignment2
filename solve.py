@@ -1,6 +1,8 @@
 import json
 from utils import *
 from polynomialArithmetic.multiplication import multiplication
+from polynomialArithmetic.longDivision import longDivision
+from polynomialArithmetic.extendedEuclideanAlgorithm import eea
 
 def writeSolution(solPath : str, answersDict : dict[str, str]):
     with open(solPath, "w") as json_file:
@@ -23,9 +25,17 @@ def parseExercise(params : dict):
                 g = params["g"]
                 answers = {"answer": multiplication(f, g, p)}
             case "long_division":
-                pass
+                p = params["integer_modulus"]
+                f = params["f"]
+                g = params["g"]
+                q, r = longDivision(f, g, p)
+                answers = {"answer-q": q, "answer-r": r}
             case "extended_euclidean_algorithm":
-                pass
+                p = params["integer_modulus"]
+                f = params["f"]
+                g = params["g"]
+                A, B, D = eea(f, g, p)
+                answers = {"answer-a":A, "answer-b": B, "answer-gcd":D}
             case "irreducibility_check":
                 pass
             case "irreducible_element_generation":
@@ -68,4 +78,4 @@ def solve_exercise(exercise_location : str, answer_location : str):
 
     writeSolution(answer_location, answers)
 
-solve_exercise("Simple/Exercises/exercise2.json", "scratch.json")
+solve_exercise("AfS-SoftwareAssignment2/Realistic/Exercises/exercise11.json", "scratch.json")
