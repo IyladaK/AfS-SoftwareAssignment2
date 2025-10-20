@@ -4,6 +4,8 @@ from utils import *
 from polynomialArithmetic.multiplication import multiplication
 from polynomialArithmetic.longDivision import longDivision
 from polynomialArithmetic.extendedEuclideanAlgorithm import eea
+from finiteFieldArithmetic.primitivityCheck import primitivity_check
+from finiteFieldArithmetic.primitiveElementGeneration import primitive_element_generation
 
 def writeSolution(solPath : str, answersDict : dict[str, str]):
     with open(solPath, "w") as json_file:
@@ -62,9 +64,17 @@ def parseExercise(params : dict):
             case "inversion":
                 pass
             case "primitivity_check":
-                pass
+                f = params["f"]
+                integer_modulus = params["integer_modulus"]
+                polynomial_modulus = params["polynomial_modulus"]
+                result = primitivity_check(f, integer_modulus, polynomial_modulus)
+                answers = {"answer": result}
             case "primitive_element_generation":
-                pass
+                f = params["f"]
+                integer_modulus = params["integer_modulus"]
+                polynomial_modulus = params["polynomial_modulus"]
+                result = primitive_element_generation(integer_modulus, polynomial_modulus)
+                answers = {"answer": result}
             case _:
                 print("task does not exist or does not match with type")
     else:

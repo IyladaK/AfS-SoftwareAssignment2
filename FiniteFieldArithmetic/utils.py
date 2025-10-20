@@ -20,7 +20,7 @@ def leadingCoeff(f: Poly) -> int:
     f = leadingZerosArr(f)
     return 0 if not f else f[-1]
 
-def get_prime_factors(n):
+def get_prime_factors(n: int) -> List[int]:
     factors = []
     d = 2
     temp_n = n

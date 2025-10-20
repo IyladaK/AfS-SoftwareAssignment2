@@ -1,6 +1,9 @@
 from utils import Poly, get_prime_factors
 
 def primitivity_check(f: Poly, integer_modulus: int, polynomial_modulus: Poly) -> bool:
+    if f == [0] or f == [] or f == None:
+        return False
+    
     p = len(polynomial_modulus)
     order = integer_modulus**(p - 1) - 1
     primeFactors = get_prime_factors(order)
@@ -17,6 +20,3 @@ def primitivity_check(f: Poly, integer_modulus: int, polynomial_modulus: Poly) -
         if temp == [1]:
             return False
     return True
-
-
-        
