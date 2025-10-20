@@ -95,4 +95,4 @@ def solve_exercise(exercise_location : str, answer_location : str):
 
     writeSolution(answer_location, answers)
 
-solve_exercise("AfS-SoftwareAssignment2/Realistic/Exercises/exercise11.json", "scratch.json")
+solve_exercise("./Realistic/Exercises/exercise10.json", "./scratch.json")

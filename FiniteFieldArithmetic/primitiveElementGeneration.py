@@ -1,5 +1,5 @@
 from utils import Poly, get_prime_factors, leadingZerosArr
-from primitivityCheck import primitivity_check
+from .primitivityCheck import primitivity_check
 from random import randint
 
 def primitive_element_generation(integer_modulus: int, polynomial_modulus: Poly) -> Poly:
