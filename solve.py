@@ -1,11 +1,13 @@
 import json
+
 from polynomialArithmetic.additionSubtraction import addition, subtraction
 from utils import *
 from polynomialArithmetic.multiplication import multiplication
 from polynomialArithmetic.longDivision import longDivision
 from polynomialArithmetic.extendedEuclideanAlgorithm import eea
-from finiteFieldArithmetic.primitivityCheck import primitivity_check
-from finiteFieldArithmetic.primitiveElementGeneration import primitive_element_generation
+from polynomialArithmetic.irreducibility import irreducibilityCheck
+from FiniteFieldArithmetic.primitivityCheck import primitivity_check
+from FiniteFieldArithmetic.primitiveElementGeneration import primitive_element_generation
 
 def writeSolution(solPath : str, answersDict : dict[str, str]):
     with open(solPath, "w") as json_file:
@@ -46,6 +48,10 @@ def parseExercise(params : dict):
                 A, B, D = eea(f, g, p)
                 answers = {"answer-a":A, "answer-b": B, "answer-gcd":D}
             case "irreducibility_check":
+                p = params["integer_modulus"]
+                f = params["f"]
+                isIrreducible = irreducibilityCheck(f, p)
+                answers = {"answer": isIrreducible}
                 pass
             case "irreducible_element_generation":
                 pass
