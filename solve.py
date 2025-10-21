@@ -6,6 +6,7 @@ from polynomialArithmetic.multiplication import multiplication
 from polynomialArithmetic.longDivision import longDivision
 from polynomialArithmetic.extendedEuclideanAlgorithm import eea
 from polynomialArithmetic.irreducibility import irreducibilityCheck
+from polynomialArithmetic.irreducibility import irreducibleElementGeneration
 from FiniteFieldArithmetic.primitivityCheck import primitivity_check
 from FiniteFieldArithmetic.primitiveElementGeneration import primitive_element_generation
 
@@ -52,9 +53,11 @@ def parseExercise(params : dict):
                 f = params["f"]
                 isIrreducible = irreducibilityCheck(f, p)
                 answers = {"answer": isIrreducible}
-                pass
             case "irreducible_element_generation":
-                pass
+                p = params["integer_modulus"]
+                degree = params["degree"]
+                irreduciblePoly = irreducibleElementGeneration(degree, p)
+                answers = {"answer": irreduciblePoly}
             case _:
                 print("task does not exist or does not match with type")
     elif type == "finite_field_arithmetic":
