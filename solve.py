@@ -9,6 +9,7 @@ from polynomialArithmetic.irreducibility import irreducibilityCheck, irreducible
 from FiniteFieldArithmetic.additionSubtraction import finiteFieldAddition, finiteFieldSubtraction
 from FiniteFieldArithmetic.primitivityCheck import primitivity_check
 from FiniteFieldArithmetic.primitiveElementGeneration import primitive_element_generation
+from FiniteFieldArithmetic.divisionInversion import finiteFieldDivision, finiteFieldInverse
 
 def writeSolution(solPath : str, answersDict : dict[str, str]):
     with open(solPath, "w") as json_file:
@@ -79,9 +80,22 @@ def parseExercise(params : dict):
             case "multiplication":
                 pass
             case "division":
-                pass
+                p = params["integer_modulus"]
+                h = params["polynomial_modulus"]
+                f = params["f"]
+                g = params["g"]
+                try:
+                    answers = {"answer": finiteFieldDivision(f, g, h, p)}
+                except ZeroDivisionError:
+                    answers = {"answer": None}
             case "inversion":
-                pass
+                p = params["integer_modulus"]
+                h = params["polynomial_modulus"]
+                f = params["f"]
+                try:
+                    answers = {"answer": finiteFieldInverse(f, h, p)}
+                except ZeroDivisionError:
+                    answers = {"answer": None}
             case "primitivity_check":
                 f = params["f"]
                 integer_modulus = params["integer_modulus"]
@@ -114,4 +128,4 @@ def solve_exercise(exercise_location : str, answer_location : str):
 
     writeSolution(answer_location, answers)
 
-solve_exercise("./Realistic/Exercises/exercise10.json", "./scratch.json")
+solve_exercise("./Realistic/Exercises/exercise8.json", "./scratch.json")
