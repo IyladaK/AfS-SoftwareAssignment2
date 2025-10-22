@@ -5,8 +5,8 @@ from utils import *
 from polynomialArithmetic.multiplication import multiplication
 from polynomialArithmetic.longDivision import longDivision
 from polynomialArithmetic.extendedEuclideanAlgorithm import eea
-from polynomialArithmetic.irreducibility import irreducibilityCheck
-from polynomialArithmetic.irreducibility import irreducibleElementGeneration
+from polynomialArithmetic.irreducibility import irreducibilityCheck, irreducibleElementGeneration
+from FiniteFieldArithmetic.additionSubtraction import finiteFieldAddition, finiteFieldSubtraction
 from FiniteFieldArithmetic.primitivityCheck import primitivity_check
 from FiniteFieldArithmetic.primitiveElementGeneration import primitive_element_generation
 
@@ -63,9 +63,19 @@ def parseExercise(params : dict):
     elif type == "finite_field_arithmetic":
         match task:
             case "addition":
-                pass
+                f = params["f"]
+                g = params["g"]
+                polyMod = params["polynomial_modulus"]
+                intMod = params["integer_modulus"]
+                added = finiteFieldAddition(f, g, polyMod, intMod)
+                answers = {"answer": added}
             case "subtraction":
-                pass
+                f = params["f"]
+                g = params["g"]
+                polyMod = params["polynomial_modulus"]
+                intMod = params["integer_modulus"]
+                subbed = finiteFieldSubtraction(f, g, polyMod, intMod)
+                answers = {"answer": subbed}
             case "multiplication":
                 pass
             case "division":
