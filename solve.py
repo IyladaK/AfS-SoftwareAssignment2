@@ -10,6 +10,7 @@ from FiniteFieldArithmetic.additionSubtraction import finiteFieldAddition, finit
 from FiniteFieldArithmetic.primitivityCheck import primitivity_check
 from FiniteFieldArithmetic.primitiveElementGeneration import primitive_element_generation
 from FiniteFieldArithmetic.divisionInversion import finiteFieldDivision, finiteFieldInverse
+from FiniteFieldArithmetic.finiteFieldMultiplication import finite_field_multiply
 
 def writeSolution(solPath : str, answersDict : dict[str, str]):
     with open(solPath, "w") as json_file:
@@ -78,7 +79,12 @@ def parseExercise(params : dict):
                 subbed = finiteFieldSubtraction(f, g, polyMod, intMod)
                 answers = {"answer": subbed}
             case "multiplication":
-                pass
+                f = params["f"]
+                g = params["g"]
+                polyMod = params["polynomial_modulus"]
+                intMod = params["integer_modulus"]
+                multiplied = finite_field_multiply(f, g, polyMod, intMod)
+                answers = {"answer": multiplied}
             case "division":
                 p = params["integer_modulus"]
                 h = params["polynomial_modulus"]
@@ -128,4 +134,4 @@ def solve_exercise(exercise_location : str, answer_location : str):
 
     writeSolution(answer_location, answers)
 
-solve_exercise("./Realistic/Exercises/exercise8.json", "./scratch.json")
+solve_exercise("./AfS-SoftwareAssignment2/Realistic/Exercises/exercise13.json", "./scratch.json")
