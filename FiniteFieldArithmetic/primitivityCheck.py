@@ -13,10 +13,10 @@ def primitivity_check(f: Poly, integer_modulus: int, polynomial_modulus: Poly) -
         temp = f[:]
         while power > 0:
             if power % 2 == 0:
-                temp = finite_field_multiply(temp, temp, integer_modulus, polynomial_modulus)
+                temp = finite_field_multiply(temp, temp, polynomial_modulus, integer_modulus)
                 power //= 2
             else:
-                temp = finite_field_multiply(temp, f, integer_modulus, polynomial_modulus)
+                temp = finite_field_multiply(temp, f, polynomial_modulus, integer_modulus)
                 power -= 1
         if temp == [1]:
             return False
