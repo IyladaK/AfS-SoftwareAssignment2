@@ -38,7 +38,7 @@ def eea(f: Poly, g: Poly, p: int) -> Tuple[Poly, Poly, Poly]:
             inv_lc_g = pow(lc_g, p-2, p) #to compute lc(g)^(-1) with Fermat's Little Theorem
         else:
             inv_lc_g = 0
-        D = scalarMul(f, inv_lc_g, p) #gcd(0,g) = monic(g)
+        D = scalarMul(g, inv_lc_g, p) #gcd(0,g) = monic(g)
         #A*0 + B*g = D  
         A = [0] # A = 0
         B = [inv_lc_g] # B = lc(g)^-1 
