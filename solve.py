@@ -109,7 +109,6 @@ def parseExercise(params : dict):
                 result = primitivity_check(f, integer_modulus, polynomial_modulus)
                 answers = {"answer": result}
             case "primitive_element_generation":
-                f = params["f"]
                 integer_modulus = params["integer_modulus"]
                 polynomial_modulus = params["polynomial_modulus"]
                 result = primitive_element_generation(integer_modulus, polynomial_modulus)
