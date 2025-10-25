@@ -4,7 +4,7 @@ from polynomialArithmetic.longDivision import longDivision
 
 
 """
-takes a polynomial, f, with deg(f) \in [1, 5] as a Poly array and an integer modulus q \in [1, 13]
+takes a polynomial, f, with deg(f) in [1, 5] as a Poly array and an integer modulus q in [1, 13]
 returns true if the polynomial is irreducible in the modulus field
 return false if the polynomial is reducible
 """
@@ -27,13 +27,13 @@ def irreducibilityCheck(f : Poly, q : int):
         return "false"
 
     # now we check that for all proper prime divisors, d, of n, that
-    # EEA(f, X^{q^d} - X) = 1
+    # EEA(f, X^{q^(n/d)} - X) = 1
     # at this point, n \in {2, 3, 4, 5}, and since {2, 3, 5} do not have any
     # proper prime divisors (excluding itself and 1), we only need to check
     # proper prime divisors if n = 4, and we only need to check for d = 2
     if n == 4:
         # proper prime divisor = {2}
-        eeaPoly = [0, 1] + [0]*(q**2 - 2) + [1]
+        eeaPoly = [0, -1] + [0]*(q**2 - 2) + [1]
         _, _, gcd = eea(eeaPoly, f, q)
         if gcd != [1]:
             return "false"
@@ -69,13 +69,14 @@ def nextPermutation(polyArr : Poly, mod : int):
 
 
 """
-takes an integer degree, n \in [1, 5], and an integer modulus, p \in [1, 13]
+takes an integer degree, n in [1, 5], and an integer modulus, p in [2, 13]
 returns an irreducible polynomial, p, with degree(p) = n
 """
 def irreducibleElementGeneration(n : int, p : int):
-    # irreducible element generation accepts n \in [1, 5] and p \in [1, 13]
-    # this is the same as in irreducibility check, so it suffices to leave out
-    # range checks as they are present there
+    # irreducible element generation accepts n \in [1, 5] and p \in [2, 13]
+    # check for correct input ranges
+    if p < 2 or p > 13 or n < 1 or n > 5:
+        return "none"
 
     # set up for smallest Poly with degree n = X^n
     curPoly = [0]*(n) + [1]
