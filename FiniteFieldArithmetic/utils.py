@@ -4,7 +4,7 @@ Poly = List[int] #from the coefficient of lowest degree to coefficient of highes
 
 
 # all finite field arithmetic funcitons except primitivity ones have  value ranges
-# p \in [2, 509] and deg(h) \in [2, 256]
+# p in [2, 509] and deg(h) in [2, 256]
 # returns true of input values fit, false otherwise
 def checkInputRanges(polyMod, intMod):
     degH = len(polyMod) - 1
