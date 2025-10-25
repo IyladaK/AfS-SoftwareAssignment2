@@ -1,5 +1,5 @@
 from polynomialArithmetic.longDivision import longDivision
-from utils import Poly, checkInputRanges
+from FiniteFieldArithmetic.utils import checkInputRanges
 from polynomialArithmetic.additionSubtraction import addition
 from polynomialArithmetic.additionSubtraction import subtraction
 
@@ -9,7 +9,7 @@ takes polynomial array, f, irreducible polynomial (array), polyMod, and integer 
 if deg(f) < deg(polyMod), returns f
 otherwise, returns a polynomial congruent to f, f', with deg(f') < deg(polyMod)
 """
-def reducePolySize(f : Poly, polyMod : Poly, intMod : int) -> Poly:
+def reducePolySize(f, polyMod, intMod : int):
     # if deg(f) is already < deg(polyMod), just return f
     # if deg(f) >= deg(polyMod), reduce it to a congruent polynomial
     if len(f) >= len(polyMod):
@@ -21,7 +21,7 @@ def reducePolySize(f : Poly, polyMod : Poly, intMod : int) -> Poly:
 takes two polynomial arrays, f and g, an irreducible polynomial, polyMod, and integer modulus, intMod
 returns f + g in F_{p^n} := Z/(intMod)Z[X] / (polyMod)
 """
-def finiteFieldAddition(f : Poly, g : Poly, polyMod : Poly, intMod : int):
+def finiteFieldAddition(f, g, polyMod, intMod : int):
     # checks input ranges
     if checkInputRanges(polyMod, intMod) is False:
         return "none"
@@ -36,7 +36,7 @@ def finiteFieldAddition(f : Poly, g : Poly, polyMod : Poly, intMod : int):
 takes two polynomial arrays, f and g, an irreducible polynomial, polyMod, and integer modulus, intMod
 returns f + g in F_{p^n} := Z/(intMod)Z[X] / (polyMod)
 """
-def finiteFieldSubtraction(f : Poly, g : Poly, polyMod : Poly, intMod : int):
+def finiteFieldSubtraction(f, g, polyMod, intMod : int):
     # check input ranges
     if checkInputRanges(polyMod, intMod) is False:
         return "none"

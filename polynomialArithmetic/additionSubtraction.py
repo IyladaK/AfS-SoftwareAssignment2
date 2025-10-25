@@ -1,7 +1,7 @@
-from utils import Poly, modP
+from utils import modP
 
 # Polynomial Addition and Subtraction
-def addition(f: Poly, g: Poly, modulus: int) -> Poly:
+def addition(f, g, modulus: int):
     # make sure f is the longer one
     if len(f) < len(g):
         f, g = g, f
@@ -15,7 +15,7 @@ def addition(f: Poly, g: Poly, modulus: int) -> Poly:
     return modP(result, modulus)
 
     # Polynomial Subtraction
-def subtraction(f: Poly, g: Poly, modulus: int) -> Poly:
+def subtraction(f, g, modulus: int):
     # negate coefficients of g
     for i in range(len(g)):
         g[i] = -g[i]

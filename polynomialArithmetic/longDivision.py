@@ -1,15 +1,15 @@
 from typing import Tuple
-from utils import Poly, leadingZerosArr, modP, leadingCoeff
+from utils import leadingZerosArr, modP, leadingCoeff
 from .additionSubtraction import addition, subtraction
 from .multiplication import multiplication
 
 #multiply by the X^k
-def polyShift(f: Poly, k: int) -> Poly:
+def polyShift(f, k: int):
     if f == [0]:
         return [0]
     return [0] * k + f[:]
 
-def longDivision(f: Poly, g: Poly, p: int) -> Tuple[Poly, Poly]:
+def longDivision(f, g, p: int):
     f = leadingZerosArr(modP(f, p))
     g = leadingZerosArr(modP(g, p))
     

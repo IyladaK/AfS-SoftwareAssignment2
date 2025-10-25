@@ -1,4 +1,3 @@
-from utils import Poly
 from polynomialArithmetic.extendedEuclideanAlgorithm import eea
 from polynomialArithmetic.longDivision import longDivision
 
@@ -8,7 +7,7 @@ takes a polynomial, f, with deg(f) in [1, 5] as a Poly array and an integer modu
 returns true if the polynomial is irreducible in the modulus field
 return false if the polynomial is reducible
 """
-def irreducibilityCheck(f : Poly, q : int):
+def irreducibilityCheck(f, q : int):
     n = len(f) - 1 # degree of f
 
     # check for correct input ranges
@@ -47,7 +46,7 @@ increments the polynomial to the next smallest polynomial within deg(polyArr') =
 returns the next smallest Poly array if such a polynomial exists
 returns [-1] otherwise
 """
-def nextPermutation(polyArr : Poly, mod : int):
+def nextPermutation(polyArr, mod : int):
     # iterates from least to most significant coef
     for i in range(len(polyArr)):
         # if incrementing this coefficient causes a carry forward,

@@ -1,9 +1,9 @@
-from utils import Poly, checkInputRanges
-from additionSubtraction import reducePolySize
+from FiniteFieldArithmetic.utils import checkInputRanges
+from FiniteFieldArithmetic.additionSubtraction import reducePolySize
 from polynomialArithmetic.multiplication import multiplication
 
 
-def finite_field_multiply(f : Poly, g : Poly, polyMod : Poly, intMod : int):
+def finite_field_multiply(f, g, polyMod, intMod : int):
     if checkInputRanges(polyMod, intMod) is False:
         return "none"
     #polynomial multiplication mod intMod

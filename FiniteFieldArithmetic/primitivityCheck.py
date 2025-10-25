@@ -1,8 +1,8 @@
-from utils import Poly, get_prime_factors
+from utils import get_prime_factors
 from .finiteFieldMultiplication import finite_field_multiply
 
 
-def primitivity_check(f: Poly, integer_modulus: int, polynomial_modulus: Poly) -> bool:
+def primitivity_check(f, integer_modulus: int, polynomial_modulus) -> bool:
     if f == [0] or f == [] or f == None:
         return False
 

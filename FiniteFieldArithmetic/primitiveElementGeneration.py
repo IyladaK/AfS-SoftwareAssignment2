@@ -1,9 +1,9 @@
-from utils import Poly, get_prime_factors, leadingZerosArr
+from utils import get_prime_factors, leadingZerosArr
 from .primitivityCheck import primitivity_check
 from random import randint
 
 # Generate a primitive element in a finite field
-def primitive_element_generation(integer_modulus: int, polynomial_modulus: Poly) -> Poly:
+def primitive_element_generation(integer_modulus: int, polynomial_modulus):
     
     # The degree of the polynomial modulus
     maximum_degree = len(polynomial_modulus) - 1

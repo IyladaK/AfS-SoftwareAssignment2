@@ -1,16 +1,16 @@
 from typing import Tuple
-from utils import Poly, leadingZerosArr, modP, leadingCoeff
+from utils import leadingZerosArr, modP, leadingCoeff
 from .additionSubtraction import addition
 from .multiplication import multiplication
 from .longDivision import longDivision
 
-def scalarMul(f: Poly, c: int, p: int) -> Poly:
+def scalarMul(f, c: int, p: int):
     return [(c*a) % p for a in f]
 
-def neg(f: Poly, p: int) -> Poly:
+def neg(f, p: int):
     return [(-1*c) % p for c in f]
 
-def eea(f: Poly, g: Poly, p: int) -> Tuple[Poly, Poly, Poly]:
+def eea(f, g, p: int):
 
     #A*f + B*g = D and D = gcd(f,g) as monic, it returns to (A,B,D)
 

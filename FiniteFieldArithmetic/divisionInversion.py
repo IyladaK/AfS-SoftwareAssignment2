@@ -1,15 +1,15 @@
 from typing import Tuple
-from utils import Poly, modP, leadingZerosArr, leadingCoeff
+from utils import modP, leadingZerosArr, leadingCoeff
 from polynomialArithmetic.additionSubtraction import subtraction
 from polynomialArithmetic.multiplication import multiplication
 from polynomialArithmetic.longDivision import longDivision
 
-def _poly_mod_h(f: Poly, h: Poly, p: int) -> Poly:
+def _poly_mod_h(f, h, p: int):
     f = modP(f, p)
     _, r = longDivision(f, h, p)
     return leadingZerosArr(modP(r, p))
 
-def _egcd_poly(a: Poly, b: Poly, p: int) -> Tuple[Poly, Poly, Poly]:
+def _egcd_poly(a, b, p: int):
     # r0, r1 setup + normalise inputs 
     r0 = leadingZerosArr(modP(a, p))
     r1 = leadingZerosArr(modP(b, p))
@@ -31,7 +31,7 @@ def _egcd_poly(a: Poly, b: Poly, p: int) -> Tuple[Poly, Poly, Poly]:
     t0 = multiplication([inv_lc], t0, p)
     return leadingZerosArr(r0), leadingZerosArr(s0), leadingZerosArr(t0)
 
-def finiteFieldInverse(f: Poly, h: Poly, p: int) -> Poly:
+def finiteFieldInverse(f, h, p: int):
     f = _poly_mod_h(f, h, p)
     if f == [0]:
         raise ZeroDivisionError("inverse of zero polynomial in F_p[X]/(h)")
@@ -40,7 +40,7 @@ def finiteFieldInverse(f: Poly, h: Poly, p: int) -> Poly:
     _g, s, _t = _egcd_poly(f, h, p)   # s*f + t*h = 1
     return _poly_mod_h(s, h, p)       # s is the inverse mod h
 
-def finiteFieldDivision(f: Poly, g: Poly, h: Poly, p: int) -> Poly:
+def finiteFieldDivision(f, g, h, p: int):
     f = _poly_mod_h(f, h, p)
     g = _poly_mod_h(g, h, p)
     if g == [0]:

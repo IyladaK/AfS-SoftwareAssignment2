@@ -1,9 +1,6 @@
-from typing import List
-
-Poly = List[int] #from the coefficient of lowest degree to coefficient of highest degree
 
 #remove leading zeros
-def leadingZerosArr (x:Poly) -> Poly:
+def leadingZerosArr (x):
     if not x:
         return [0]
     i = len(x)-1
@@ -14,15 +11,15 @@ def leadingZerosArr (x:Poly) -> Poly:
     return x[:i+1]
         
 # compute x mod p
-def modP (f:Poly, p:int) -> Poly:
+def modP (f, p:int):
     return leadingZerosArr([c % p for c in f])
 
 # take the last element from the Poly list which returns to leading coefficent
-def leadingCoeff(f: Poly) -> int:
+def leadingCoeff(f) -> int:
     f = leadingZerosArr(f)
     return 0 if not f else f[-1]
 
-def get_prime_factors(n: int) -> List[int]:
+def get_prime_factors(n: int):
     factors = []
     d = 2
     temp_n = n

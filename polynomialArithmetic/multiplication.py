@@ -1,6 +1,6 @@
-from utils import Poly, modP, leadingZerosArr
+from utils import modP, leadingZerosArr
 
-def multiplication(f: Poly, g: Poly, p: int) -> Poly:
+def multiplication(f, g, p: int):
     #Reduce input coefficients modulo p to keep them in [0, p)
     f = modP(f, p)
     g = modP(g, p)
