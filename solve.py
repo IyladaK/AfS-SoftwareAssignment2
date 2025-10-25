@@ -1,7 +1,6 @@
 import json
 
 from polynomialArithmetic.additionSubtraction import addition, subtraction
-from utils import *
 from polynomialArithmetic.multiplication import multiplication
 from polynomialArithmetic.longDivision import longDivision
 from polynomialArithmetic.extendedEuclideanAlgorithm import eea
@@ -133,4 +132,3 @@ def solve_exercise(exercise_location : str, answer_location : str):
 
     writeSolution(answer_location, answers)
 
-solve_exercise("./AfS-SoftwareAssignment2/Realistic/Exercises/exercise13.json", "./scratch.json")
