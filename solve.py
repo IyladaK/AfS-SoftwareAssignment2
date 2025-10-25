@@ -132,4 +132,3 @@ def solve_exercise(exercise_location : str, answer_location : str):
 
     writeSolution(answer_location, answers)
 
-solve_exercise("Simple/Exercises/exercise10.json", "scratch.json")
