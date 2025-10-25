@@ -12,10 +12,10 @@ def irreducibilityCheck(f, q : int):
 
     # check for correct input ranges
     if q < 2 or q > 13 or n < 1 or n > 5:
-        return "none"
+        return None
     # trivial case: linear is always irreducible
     if n == 1:
-        return "true"
+        return True
 
     # check if f|X^{q^n}
     n = len(f) - 1
@@ -23,7 +23,7 @@ def irreducibilityCheck(f, q : int):
     _, divRem = longDivision(prodPoly, f, q)
 
     if divRem != [0]:
-        return "false"
+        return False
 
     # now we check that for all proper prime divisors, d, of n, that
     # EEA(f, X^{q^(n/d)} - X) = 1
@@ -35,9 +35,9 @@ def irreducibilityCheck(f, q : int):
         eeaPoly = [0, -1] + [0]*(q**2 - 2) + [1]
         _, _, gcd = eea(eeaPoly, f, q)
         if gcd != [1]:
-            return "false"
+            return False
 
-    return "true"
+    return True
 
 
 """
@@ -75,17 +75,17 @@ def irreducibleElementGeneration(n : int, p : int):
     # irreducible element generation accepts n \in [1, 5] and p \in [2, 13]
     # check for correct input ranges
     if p < 2 or p > 13 or n < 1 or n > 5:
-        return "none"
+        return None
 
     # set up for smallest Poly with degree n = X^n
     curPoly = [0]*(n) + [1]
 
     # We iterate from X^n to pX^n + pX^{n-1} + ... + p until we find an irreducible Poly
-    while irreducibilityCheck(curPoly, p) == "false":
+    while irreducibilityCheck(curPoly, p) is False:
         # since the current smallest Poly is reducible, we increment
         curPoly = nextPermutation(curPoly, p)
         # -1 is the magic number returned after the maximum Poly for degree n
         if curPoly == [-1]:
-            return "none"
+            return None
     # only returns when irreducibilityCheck(curPoly, p) gives "true"
     return curPoly
