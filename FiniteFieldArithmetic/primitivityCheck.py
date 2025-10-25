@@ -1,23 +1,30 @@
-from utils import Poly, get_prime_factors
-from .finiteFieldMultiplication import finite_field_multiply
+from utils import Poly, get_prime_factors, leadingZerosArr
+from .primitivityCheck import primitivity_check
+from random import randint
 
-def primitivity_check(f: Poly, integer_modulus: int, polynomial_modulus: Poly) -> bool:
-    if f == [0] or f == [] or f == None:
-        return False
+# Generate a primitive element in a finite field
+def primitive_element_generation(integer_modulus: int, polynomial_modulus: Poly) -> Poly:
     
-    p = len(polynomial_modulus)
-    order = integer_modulus**(p - 1) - 1
-    primeFactors = get_prime_factors(order)
-    for i in primeFactors:
-        power = order // i
-        temp = f[:]
-        while power > 0:
-            if power % 2 == 0:
-                temp = finite_field_multiply(temp, temp, integer_modulus, polynomial_modulus)
-                power //= 2
-            else:
-                temp = finite_field_multiply(temp, f, integer_modulus, polynomial_modulus)
-                power -= 1
-        if temp == [1]:
-            return False
-    return True
+    # The degree of the polynomial modulus
+    maximum_degree = len(polynomial_modulus) - 1
+    p = []
+    while True:
+        # Generate a random polynomial of degree less than maximum_degree
+        for _ in range(maximum_degree):
+            coefficent = randint(0, integer_modulus - 1)
+            p.append(coefficent)
+
+        # Remove leading zeros
+        p = leadingZerosArr(p)
+
+        # Check for the zero polynomial
+        if p == [0]:
+            p = [] #reset
+            continue
+        
+        # Check if the generated polynomial is primitive
+        if primitivity_check(p, integer_modulus, polynomial_modulus):
+            break
+        # Reset the polynomial
+        p = []
+    return p

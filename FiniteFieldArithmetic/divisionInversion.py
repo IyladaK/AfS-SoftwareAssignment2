@@ -10,12 +10,13 @@ def _poly_mod_h(f: Poly, h: Poly, p: int) -> Poly:
     return leadingZerosArr(modP(r, p))
 
 def _egcd_poly(a: Poly, b: Poly, p: int) -> Tuple[Poly, Poly, Poly]:
-    # r0, r1 setup
+    # r0, r1 setup + normalise inputs 
     r0 = leadingZerosArr(modP(a, p))
     r1 = leadingZerosArr(modP(b, p))
     s0, s1 = [1], [0]
     t0, t1 = [0], [1]
 
+    #extended Euclidean Algorithm loop
     while r1 != [0]:
         q, r2 = longDivision(r0, r1, p)
         r0, r1 = r1, r2
